@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taggram</title>
+    
+    <meta charset="UTF-8">
+    
+    <!-- O normalize ajuda a reduzir a diferença de estilo entre os navegadores -->
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css" />
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+  <body class="body">
+    <header class="header">
+      <div class="header__container">
+        <div class="icon"></div>
+        <div class="current-user">
+          <div class="current-user__username" id="current-user-username"></div> 
+          <div class="current-user__avatar" id="current-user-avatar"></div>
+        </div>
+        <div class="icon">
+          <img src="icon.svg">
+        </div>
+       </div>
+    </header>
+
+    <div class="current-post">
+     <div class="current-post_photo" id="current-post-photo"></div>
+     <div class="current-post_content">
+        <div class="current-post_contente_user">
+          <div class="current-post_user_username" id="current-post-user-username"></div>
+          <div class="current-post_user_avatar" id="current-post-user-avatar"></div>
+          <div class="current-post_user_location" id="current-post-user-location"></div>
+        </div>
+         <!--O Container serve para poder esconder o scroll dos comentários mas ainda mante-lo funcional-->
+        <div class="current-post_content_commentsContainer" id="current-post-content-commentsContainer"> 
+          <div class="current-post_content_comments" id="current-post-content-comments">
+          </div>
+        </div>
+        <div class="current-post_commentsqtd" id="current-post_commentsqtd">
+          <div class="current-post_qtd" id="current-post-qtd"></div>  
+          <div class="current-post_date" id="current-post-date"></div>  
+          <input  class="current-post_enterM" id="current-post-enterM" placeholder="Enviar um comentário..."></input>
+          <div class="current-post_enter" id="current-post-enter"   >Enviar</div>
+        </div>
+      </div>
+    </div>
+    <img src="tagview.svg" class="tagviewIcon">
+  </body>
+  <script src="index.js"></script>
+</html>
