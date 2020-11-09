@@ -68,8 +68,8 @@ border: transparent;
 position: absolute;
 width: 598px;
 height: 598px;
-left: 252px;
-top: 70px;
+left: 17.5%;
+top: 9.3%;
 border-radius: 2px;
 
 }
@@ -80,8 +80,8 @@ border-radius: 2px;
 position: absolute;
 width: 334px;
 height: 598px;
-left: 850px;
-top: 70px;
+left: 59%;
+top: 9.3%;
 border-radius: 2px;
 border: 1px solid  #EFEFEF;
 }
@@ -346,7 +346,6 @@ cursor: pointer;
 color: #0095F6;
 
 }
-
 .current-post_enter:hover
 {
   color: #005c99;
