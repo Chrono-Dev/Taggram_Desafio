@@ -125,7 +125,7 @@
      {
         var message = document.getElementById("current-post-enterM").value;
         var scroll = document.getElementById("current-post-content-comments");   
-        if(message != "")
+        if(message.value != "" && message.replace(/\s/g, '').length)  
         {
           send(user,post,message);         
           scroll.scrollTop = scroll.scrollHeight ;           //Posiciona a visão dos comentários nos mais recentes
@@ -146,9 +146,10 @@
     //Não é possível pegar o horário atual pois alguns comentários criados pela API tem horários de criação após o atual
     //gerando uma diferença de horária negativa
     var today =  new Date();
-    var a = new Date(parseInt(today.getFullYear()),today.getMonth(),today.getUTCDate()-1,23, 59); 
+    var a = new Date(parseInt(today.getFullYear()),today.getMonth(),10,23, 59); 
     var b;
 
+  
 
     var container = document.getElementById("current-post-content-comments");
     container.innerHTML = "";
@@ -178,12 +179,15 @@
       var horario  = data[1].split(":");
       data     = data[0].split("-");
 
-      b = new Date(data[0],data[2]-1,data[2],horario[0],horario[1]);
+      b = new Date(data[0],data[1]-1,data[2],horario[0],horario[1]);
 
       //diferença entre o horário do usuário e dos comentários 
       var  hh = Math.ceil(parseInt(a.getHours()) - parseInt(b.getHours()));
       var mm  = Math.ceil(parseInt(a.getMinutes()) - parseInt(b.getMinutes()));
-      var dd = Math.ceil(parseInt(a.getUTCDate()) - parseInt(b.getUTCDate()));
+      var dd = Math.ceil(parseInt(a.getUTCDate()-1) - parseInt(b.getUTCDate()));
+
+      console.log(comment);
+    
 
       //escrita dos horários 
       if(dd >= 1)

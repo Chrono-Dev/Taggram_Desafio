@@ -1,7 +1,9 @@
+
 .body {
   background-color: #FAFAFA;
-}
 
+
+}
 .header {
   background-color: #FFF;
   border-bottom: 1px solid #DBDBDB;
@@ -18,6 +20,8 @@
   padding: 15px 0 16px;
   display: flex;
   align-items: center;
+  left: auto;
+  position: relative;
 }
 
 .current-user__username {
@@ -44,8 +48,8 @@
 position: absolute;
 width: 82px;
 height: 29px;
-left: 255px;
-top: 15px;
+left: 17%;
+top: 2%;
 
 background: transparent;
 border: transparent;
@@ -54,11 +58,23 @@ border: transparent;
 
 .tagviewIcon
 {
-  position: relative;; 
-  top: 650px;
+  position: relative;
+  top: 65px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+
+}
+
+.current_post
+{
+  
+  position: relative;
+  width: 923px;
+  height: 598px;
+  left: 17%;
+  top: 25px;
+  
 
 }
 
@@ -66,11 +82,13 @@ border: transparent;
 .current-post_photo
 {
 position: absolute;
-width: 598px;
-height: 598px;
-left: 17.5%;
-top: 9.3%;
+width: 64.8%;
+height: 100%;
+left: auto;
+top: auto;
 border-radius: 2px;
+background-size: cover;
+
 
 }
 
@@ -79,9 +97,9 @@ border-radius: 2px;
 {
 position: absolute;
 width: 334px;
-height: 598px;
-left: 59%;
-top: 9.3%;
+height: 100%;
+left: 64.8%;
+top: auto;
 border-radius: 2px;
 border: 1px solid  #EFEFEF;
 }
@@ -152,13 +170,13 @@ color: #262626;
 .current-post_content_commentsContainer
 {
   border-bottom: 1px solid  #EFEFEF;
-  top: 1000px;
-  height: 408px;
-  width: 334px;
+  height: 68%;
+  width: auto;
 
 
 
   overflow: hidden;
+  scrollbar-width: none;
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -167,13 +185,13 @@ color: #262626;
 .current-post_content_comments
 {
   border-bottom: 1px solid #EFEFEF;
-  top: 1000px;
-  height: 408px;
-  width: 334px;
+  height: 100%;
+  width: auto;
 
   overflow: auto;
   overflow-x: hidden;
   padding-right: 0px;
+  scrollbar-width: none;
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -221,7 +239,9 @@ font-weight: normal;
 font-size: 14px;
 line-height: 18px;
 height: auto;
-overflow-wrap: break-word;
+
+display: inline-block;
+word-break: break-word;
 }
 
 
@@ -246,10 +266,9 @@ color: #8E8E8E;
 .current-post_commentsqtd
 {
   border-bottom: 1px solid  #EFEFEF;
-  top: 1000px;
   height: 62px;
-  width: 334px;
-  
+  width: auto;
+  background-color:white;
  
   
 
@@ -305,14 +324,14 @@ resize: none;
 width: 64px;
 height: 18px;
 left: 16px;
-top: 80px;
+
 
 font-family: Arial;
 font-style: normal;
 font-weight: normal;
 font-size: 14px;
 line-height: 18px;
-
+outline: none;
 
 color: #262626;
 
@@ -350,6 +369,66 @@ color: #0095F6;
 {
   color: #005c99;
 }
+
+
+
+
+
+/*Originalmente feito em 1440x900 então fica melhor nessa resolução*/
+/*Responsivo */
+@media only screen  and (height: 768px) {
+ 
+  .tagviewIcon{
+    top: 65px;
+  }
+
+}
+
+@media only screen and (width: 1024px) {
+  .current_post{
+     left: 4%;
+  }
+  .icon{
+  left: 4%;
+  }
+
+}
+
+@media only screen and (width: 1280px) {
+  .current_post{
+     left: 13.5%;
+  }
+  .icon{
+  left: 13.5%;
+  }
+
+}
+   
+@media only screen and (width: 1440) {
+
+}
+@media only screen  and (height: 900x) {
+ 
+}
+
+@media only screen and (min-width: 1920px) {
+  .current_post{
+    width: 1180px;
+    height: 764px;
+ }
+ .icon{
+  top:1.5%;
+  }
+
+ .current-post_content_commentsContainer
+ {
+   
+   height: 75%;
+ }
+}
+
+
+
 
 
 
