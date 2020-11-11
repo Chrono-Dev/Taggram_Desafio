@@ -16,6 +16,9 @@
           }
           return user;//Retorna o user para ser utilizado no envio de comentários(username, photo)
       })
+      .catch(error => {
+        alert("Erro ao receber dados do Usuário"+ "\r\n" +  error);
+        });
       
     }
 
@@ -55,22 +58,22 @@
         })
        .then(function(post){
           const $username =  document.getElementById("current-post-user-username");
-          const $avatar   =  document.getElementById("current-post-user-avatar");
-          const $photo = document.getElementById("current-post-photo");
-          const $location = document.getElementById("current-post-user-location");
-          const $date     = document.getElementById("current-post-date");
-        
-          $photo.style.backgroundImage = "url('" + post.photo + "')";  //foto de fundo
-          
           $username.innerHTML = post.user.username;  //username
 
+          const $photo = document.getElementById("current-post-photo");
+          $photo.style.backgroundImage = "url('" + post.photo + "')";  //foto de fundo
+
+          const $avatar   =  document.getElementById("current-post-user-avatar");
           if(post.user.avatar)   //foto de avatar 
           {
               $avatar.style.backgroundImage = "url('" + post.user.avatar + "')";
           }
 
+
+          const $location = document.getElementById("current-post-user-location");
           $location.innerHTML = post.location.city + "," + post.location.country; //localização 
 
+          const $date     = document.getElementById("current-post-date");
           //ajeitando o horário atual  
           var data = post.created_at.split("T");  //separando o texto para conseguir o ano, mês e o dia
           data     = data[0].split("-");
@@ -79,15 +82,9 @@
           var month= data[1];
           var   day= data[2];
     
-            
           //definindo o texto de data na postagem
           $date.innerHTML = day + " DE " + new Date(year,month,day).toLocaleString('default', {month:'long'});
             
-        
-            
-
-       
-
         //Preenchendo os comentários do posts
          populateComments(post.comments);
 
@@ -99,6 +96,9 @@
           
           return post;//Retorna o  post para ser utilizado no envio de comentários(uuid)
       })
+      .catch(error => {
+        alert("Erro ao receber dados da Postagem" + "\r\n" +  error);
+        });
       
 
 }
@@ -188,6 +188,7 @@
       var dd = Math.ceil(parseInt(a.getUTCDate()-1) - parseInt(b.getUTCDate()));
 
       console.log(comment);
+      
     
 
       //escrita dos horários 
