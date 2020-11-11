@@ -1,4 +1,4 @@
-
+/*author: Isaac Vinícius */
 .body {
   background-color: #FAFAFA;
 
@@ -195,7 +195,7 @@ color: #262626;
 }
 ::-webkit-scrollbar {
   width: 0px;
-  background: transparent; /* make scrollbar transparent */
+  background: transparent; 
 }
 .comment
 {
