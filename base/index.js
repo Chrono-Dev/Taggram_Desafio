@@ -1,3 +1,4 @@
+/* author: Isaac Vinícius */
 (function(apiUrl) {
     function getMe(send) {                //Cria o usuário 
        return fetch(apiUrl + "/me")
