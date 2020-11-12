@@ -147,7 +147,7 @@
     //Não é possível pegar o horário atual pois alguns comentários criados pela API tem horários de criação após o atual
     //gerando uma diferença de horária negativa
     var today =  new Date();
-    var a = new Date(parseInt(today.getFullYear()),today.getMonth(),10,23, 59); 
+    var a = new Date(parseInt(today.getFullYear()),today.getMonth(),today.getDate(),23, 59); 
     var b;
 
   
