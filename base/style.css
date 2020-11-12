@@ -384,7 +384,7 @@ color: #0095F6;
 
 }
 
-@media only screen and (width: 1024px) {
+@media only screen and (max-width: 1024px) {
   .current_post{
      left: 4%;
   }
