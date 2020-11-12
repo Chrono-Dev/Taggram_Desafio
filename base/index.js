@@ -1,4 +1,4 @@
-/* author: Isaac Vinícius  gihub: Chrono-Dev*/
+/* author: Isaac Vinícius  github: Chrono-Dev*/
 (function(apiUrl) {
     function getMe(send) {                //Cria o usuário 
        return fetch(apiUrl + "/me")
