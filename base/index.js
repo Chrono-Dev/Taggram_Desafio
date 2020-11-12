@@ -187,7 +187,7 @@
       var mm  = Math.ceil(parseInt(a.getMinutes()) - parseInt(b.getMinutes()));
       var dd = Math.ceil(parseInt(a.getUTCDate()-1) - parseInt(b.getUTCDate()));
 
-      console.log(comment);
+      
       
     
 
