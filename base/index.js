@@ -143,15 +143,21 @@
   //o que cria uma diferença de horária negativa
   
 
-  var day = comments[comments.length - 1].created_at.substring(8,10); //Pegando dia do último comentário
+  var day=0;
+  var hour=0;
+  var minutes=0;
+  if(comments.length > 0)
+  {
+      var day = comments[comments.length - 1].created_at.substring(8,10); //Pegando dia do último comentário
 
-  //Gerando um horário e um minuto aleatório entre o ultimo comentário e o tempo máximo do dia/hora
-  var min = comments[comments.length - 1].created_at.substring(11,13); //Horário do ultimo comentário 
-  var hour = getRandomInt(min,24);
+      //Gerando um horário e um minuto aleatório entre o ultimo comentário e o tempo máximo do dia/hora
+      var min = comments[comments.length - 1].created_at.substring(11,13); //Horário do ultimo comentário 
+      var hour = getRandomInt(min,24);
 
-  min = comments[comments.length - 1].created_at.substring(14,16);//Minuto do ultimo comentário 
-  var minutes = getRandomInt(min,60);
-
+      min = comments[comments.length - 1].created_at.substring(14,16);//Minuto do ultimo comentário 
+      var minutes = getRandomInt(min,60);
+  }
+    
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
