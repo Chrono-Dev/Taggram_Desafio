@@ -135,84 +135,90 @@
   
 }
 
-
- 
-
- 
-
   function populateComments(comments)
-  {
-    
-    //Pegando a rdata atual e o hoário limite do dia
-    //Não é possível pegar o horário atual pois alguns comentários criados pela API tem horários de criação após o atual
-    //gerando uma diferença de horária negativa
-    var today =  new Date();
-    var a = new Date(parseInt(today.getFullYear()),today.getMonth(),today.getDate(),23, 59); 
-    var b;
-
+{
+  
+  //Pegando a data atual e o hoário limite do dia
+  //Não é possível pegar o dia ou horário atual pois alguns comentários fornecidos pela API tem horários após o atual
+  //o que cria uma diferença de horária negativa
   
 
-    var container = document.getElementById("current-post-content-comments");
-    container.innerHTML = "";
+  var day = comments[comments.length - 1].created_at.substring(8,10); //Pegando dia do último comentário
 
-    document.getElementById("current-post-qtd").innerHTML = comments.length + " Comentários";
+  //Gerando um horário e um minuto aleatório entre o ultimo comentário e o tempo máximo do dia/hora
+  var min = comments[comments.length - 1].created_at.substring(11,13); //Horário do ultimo comentário 
+  var hour = getRandomInt(min,24);
 
-    comments.forEach(function populate(comment)
-    {
-      
-      var div = document.createElement('div');   //cria a div que contém as informações 
-      div.className = 'comment';
+  min = comments[comments.length - 1].created_at.substring(14,16);//Minuto do ultimo comentário 
+  var minutes = getRandomInt(min,60);
 
-      var photo = document.createElement('div');  //foto de perfil 
-      photo.className = 'comment_photo';
-    
-      var content = document.createElement('div');  //conteudo da mensagem( Nome +  comentário)
-      content.className = 'comment_content';
-
-      var time = document.createElement('div');  //texto do tempo da postagem 
-      time.className = 'comment_time';
-
-      photo.style.backgroundImage = "url('" + comment.user.avatar + "')"
-      content.innerHTML = "<b>" + comment.user.username  + "</b> " + comment.message;
-
-      //Separar os dados do created_at em ano, mês, dia e hora
-      var data = comment.created_at.split("T");  
-      var horario  = data[1].split(":");
-      data     = data[0].split("-");
-
-      b = new Date(data[0],data[1]-1,data[2],horario[0],horario[1]);
-
-      //diferença entre o horário do usuário e dos comentários 
-      var  hh = Math.ceil(parseInt(a.getHours()) - parseInt(b.getHours()));
-      var mm  = Math.ceil(parseInt(a.getMinutes()) - parseInt(b.getMinutes()));
-      var dd = Math.ceil(parseInt(a.getUTCDate()-1) - parseInt(b.getUTCDate()));
-
-      
-      
-    
-
-      //escrita dos horários 
-      if(dd >= 1)
-        time.innerHTML = dd + "d" + hh + "h"
-      else
-          if(hh == 0)
-          {
-            if(mm == 0)
-              time.innerHTML = "agora mesmo"
-            else
-              time.innerHTML = mm + "m";
-          }
-       else
-        time.innerHTML = hh + "h";
-      
-      div.innerHTML += photo.outerHTML;
-      div.innerHTML += content.outerHTML;
-      div.innerHTML += time.outerHTML;
-      container.innerHTML += div.outerHTML;
-
-    });
-
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
   }
+ 
+  var today =  new Date();//Pegando a data atual(para ano e mês)
+  var a = new Date(parseInt(today.getFullYear()),today.getMonth(), day, hour, minutes); 
+  var b;
+
+  var container = document.getElementById("current-post-content-comments"); //Limpa o seção de comentários antes de escreve-los
+  container.innerHTML = "";
+
+  document.getElementById("current-post-qtd").innerHTML = comments.length + " Comentários"; //contagem dos comentários
+
+  comments.forEach(function populate(comment)
+  {
+    
+    var div = document.createElement('div');   //cria a div que contém as informações 
+    div.className = 'comment';
+
+    var photo = document.createElement('div');  //foto de perfil 
+    photo.className = 'comment_photo';
+  
+    var content = document.createElement('div');  //conteudo da mensagem( Nome +  comentário)
+    content.className = 'comment_content';
+
+    var time = document.createElement('div');  //texto do tempo da postagem 
+    time.className = 'comment_time';
+
+    photo.style.backgroundImage = "url('" + comment.user.avatar + "')"
+    content.innerHTML = "<b>" + comment.user.username  + "</b> " + comment.message;
+
+    //Separar os dados do created_at em ano, mês, dia e hora
+    var data = comment.created_at.split("T");  //separa entre  a data(ano/mes/dia) e o horario(hora,minuto,segundo)
+    var hour  = data[1].split(":");        //separa o horario
+    data     = data[0].split("-");           //separa a data
+
+    b = new Date(data[0],data[1]-1,data[2],hour[0],hour[1]);
+    
+    //diferença entre o horário do usuário e dos comentários 
+    var  hh = Math.ceil(parseInt(a.getHours()) - parseInt(b.getHours()));
+    var mm  = Math.ceil(parseInt(a.getMinutes()) - parseInt(b.getMinutes()));
+    var dd = Math.ceil(parseInt(a.getUTCDate()-1) - parseInt(b.getUTCDate()));
+
+    //escrita dos horários 
+    if(dd >= 1)
+      time.innerHTML = dd + "d" + hh + "h"
+    else
+        if(hh == 0)
+        {
+          if(mm == 0)
+            time.innerHTML = "agora mesmo"
+          else
+            time.innerHTML = mm + "m";
+        }
+     else
+      time.innerHTML = hh + "h";
+    
+    div.innerHTML += photo.outerHTML;
+    div.innerHTML += content.outerHTML;
+    div.innerHTML += time.outerHTML;
+    container.innerHTML += div.outerHTML;
+
+  });
+
+}
     
   initialize();
 })("https://taggram.herokuapp.com");
